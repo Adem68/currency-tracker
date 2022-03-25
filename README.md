@@ -3,6 +3,7 @@
 
 Kurları kolayca takip et
 
+![image](https://user-images.githubusercontent.com/21019611/160191229-00d6e64e-0023-4dec-9f7a-c7671d6aabcc.png)
 ## Demo
 
 | Dolar | Euro |
