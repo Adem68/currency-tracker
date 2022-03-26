@@ -52,7 +52,7 @@ class CurrencyService: NSObject {
                 }
             }
         } catch {
-            print("Error encoding message: \(error.localizedDescription)")
+            debugPrint("Error encoding message: \(error.localizedDescription)")
         }
 
         self.receiveMessage()
