@@ -56,6 +56,7 @@ class CurrencyService: NSObject {
         }
 
         self.receiveMessage()
+        self.schedulePing()
     }
 
     func startMonitorNetworkConnectivity() {
