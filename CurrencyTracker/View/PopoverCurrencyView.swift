@@ -48,7 +48,7 @@ struct PopoverCurrencyView: View {
             Divider()
 
             HStack(spacing: 12) {
-                Link(destination: URL(string: "https://github.com/Adem68")!) {
+                Link(destination: URL(string: "https://github.com/Adem68/currency-tracker")!) {
                     Image(systemName: "link")
                     Text("GitHub")
                 }

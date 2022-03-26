@@ -16,5 +16,5 @@ enum CurrencyType: String, Decodable, Identifiable, CaseIterable {
     case gramGold = "gram-altin"
 
     var id: Self { self}
-    var description: String { rawValue.description }
+    var description: String { rawValue.description.lowercased() }
 }

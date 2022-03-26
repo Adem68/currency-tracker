@@ -22,6 +22,11 @@ class CurrencyService: NSObject {
 
     private let monitor = NWPathMonitor()
 
+    deinit {
+        currencyDictionarySubject.send(completion: .finished)
+        connectionStateSubject.send(completion: .finished)
+    }
+
     func connect() {
         let websocketURL = URL(string: Constants.websocketURLS.randomElement()!)!
         wsTask = session.webSocketTask(with: websocketURL, protocols: Constants.websocketProcotols)
@@ -96,7 +101,10 @@ class CurrencyService: NSObject {
         }
 
         var newDictionary = [String: String]()
-        newDictionary[currencyData.data.name] = currencyData.data.value
+        let currencyName = currencyData.data.name.lowercased()
+        let currencyValue = currencyData.data.value
+        
+        newDictionary[currencyName] = currencyValue
 
         let mergedDictionary = currencyDictionary.merging(newDictionary) { $1 }
         currencyDictionarySubject.send(mergedDictionary)
@@ -139,11 +147,6 @@ class CurrencyService: NSObject {
         self.wsTask = nil
         self.pingTryCount = 0
         self.connectionStateSubject.send(false)
-    }
-
-    deinit {
-        currencyDictionarySubject.send(completion: .finished)
-        connectionStateSubject.send(completion: .finished)
     }
 }
 

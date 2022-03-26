@@ -28,7 +28,7 @@ class MenuBarCurrencyViewModel: ObservableObject {
 
     init(name: String = "",
          value: String = "",
-         color: Color = .green,
+         color: Color = .white,
          service: CurrencyService = .init()
     ) {
         self.name = name
@@ -61,7 +61,6 @@ class MenuBarCurrencyViewModel: ObservableObject {
         } else {
             self.value = "İnternet yok"
         }
-
 
         DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
             self.color = .white

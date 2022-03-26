@@ -9,7 +9,7 @@ import Foundation
 
 public struct Constants {
     static let menuBarAppWidth: CGFloat = 128
-    static let popoverContentSize: NSSize = .init(width: 300, height: 340)
+    static let popoverContentSize: NSSize = .init(width: 300, height: 360)
     static var applicationVersion: String {
         return Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as! String
     }

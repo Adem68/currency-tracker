@@ -21,7 +21,6 @@ class PopoverCurrencyViewModel: ObservableObject {
     private let currencyFormatter: NumberFormatter = {
         let formatter = NumberFormatter()
         formatter.numberStyle = .currency
-        formatter.maximumFractionDigits = 2
         formatter.currencyCode = "TRY"
         formatter.currencySymbol = "₺"
         return formatter
@@ -49,6 +48,7 @@ class PopoverCurrencyViewModel: ObservableObject {
     func updateView() {  
         let selectedCurrencyName = selectedCurrencyType.description
         let currencyValue = self.service.currencyDictionary[selectedCurrencyName]?.asDouble ?? 0
+        self.currencyFormatter.maximumFractionDigits = 4
         let currencyValueText = self.currencyFormatter.string(from: NSNumber(value: currencyValue))
         self.title = selectedCurrencyName
 
@@ -61,6 +61,7 @@ class PopoverCurrencyViewModel: ObservableObject {
 
     func valueText(for currencyType: CurrencyType) -> String {
         if let value = self.service.currencyDictionary[currencyType.description]?.asDouble, value > 0 {
+            self.currencyFormatter.maximumFractionDigits = 2
             return self.currencyFormatter.string(from: NSNumber(value: value)) ?? ""
         } else {
             return "Güncelleniyor"
