@@ -94,6 +94,7 @@
 			isa = PBXGroup;
 			children = (
 				29FDEB0327EF8809008FDEC7 /* CurrencyTrackerApp.swift */,
+				2939280D27ECFA89005C4F56 /* CurrencyTracker.entitlements */,
 				2939281327ECFAC9005C4F56 /* Info.plist */,
 				296A754A27ED112A0046F9E6 /* Model */,
 				296A754F27ED127D0046F9E6 /* Network */,
@@ -145,7 +146,6 @@
 			isa = PBXGroup;
 			children = (
 				290CAA7327ECFCDD00F8837B /* AppDelegate.swift */,
-				2939280D27ECFA89005C4F56 /* CurrencyTracker.entitlements */,
 				2939280827ECFA89005C4F56 /* Assets.xcassets */,
 			);
 			path = "Support Files";
@@ -393,7 +393,7 @@
 				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Manual;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 7;
+				CURRENT_PROJECT_VERSION = 8;
 				DEVELOPMENT_ASSET_PATHS = "\"CurrencyTracker/Preview Content\"";
 				DEVELOPMENT_TEAM = "";
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -424,7 +424,7 @@
 				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Manual;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 7;
+				CURRENT_PROJECT_VERSION = 8;
 				DEVELOPMENT_ASSET_PATHS = "\"CurrencyTracker/Preview Content\"";
 				DEVELOPMENT_TEAM = "";
 				ENABLE_HARDENED_RUNTIME = YES;
