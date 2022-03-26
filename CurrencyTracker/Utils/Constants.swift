@@ -8,16 +8,36 @@
 import Foundation
 
 public struct Constants {
-    static let websocketURL: URL = URL(string: "wss://nc.ciner.com.tr/sub/dot")!
     static let menuBarAppWidth: CGFloat = 128
-    static let popoverContentSize: NSSize = .init(width: 260, height: 300)
-    static let currencyURL = "https://www.bloomberght.com/doviz/"
-    static let goldenURL = "https://www.bloomberght.com/altin/"
-    static let commodityURL = "https://www.bloomberght.com/emtia/"
+    static let popoverContentSize: NSSize = .init(width: 300, height: 340)
     static var applicationVersion: String {
         return Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as! String
     }
     static var appVersion: String {
         return "v\(applicationVersion)"
     }
+
+    static let websocketURLS = [
+        "wss://ws1.doviz.com:5224/",
+        "wss://ws2.doviz.com:5224/",
+        "wss://ws3.doviz.com:5224/",
+        "wss://ws4.doviz.com:5224/",
+        "wss://ws5.doviz.com:5224/",
+        "wss://ws6.doviz.com:5224/",
+        "wss://ws7.doviz.com:5224/",
+        "wss://ws8.doviz.com:5224/",
+        "wss://ws9.doviz.com:5224/",
+        "wss://ws10.doviz.com:5224/"
+    ]
+
+    static let websocketProcotols = ["nokta-chat-json"]
+    
+    static let currencies = [
+        "gram-altin",
+        "ceyrek-altin",
+        "USD",
+        "EUR",
+        "GBP",
+        "bitcoin"
+    ]
 }

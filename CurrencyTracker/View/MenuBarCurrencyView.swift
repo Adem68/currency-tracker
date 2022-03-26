@@ -25,7 +25,6 @@ struct MenuBarCurrencyView: View {
             viewModel.updateView()
         }
         .onAppear {
-            viewModel.listenNetworkChanges()
             viewModel.subscribeToSocket()
         }
     }

@@ -23,9 +23,33 @@ class CurrencyService: NSObject {
     private let monitor = NWPathMonitor()
 
     func connect() {
-        wsTask = session.webSocketTask(with: Constants.websocketURL)
+        let websocketURL = URL(string: Constants.websocketURLS.randomElement()!)!
+        wsTask = session.webSocketTask(with: websocketURL, protocols: Constants.websocketProcotols)
         wsTask?.delegate = self
         wsTask?.resume()
+
+        let randomUser = "/webkullanici_\(Int.random(in: 100..<1000))"
+        let dictionary: [String : Any] = [
+            "action": "auth",
+            "data": [
+                "username": "",
+                "password": "",
+                "joinTo": "info@\(Constants.currencies.joined(separator: ",")),\(randomUser)"
+            ]
+        ]
+
+        do {
+            let jsonData = try JSONSerialization.data(withJSONObject: dictionary, options: [])
+            let message = URLSessionWebSocketTask.Message.data(jsonData)
+            wsTask?.send(message) { error in
+                if let error = error {
+                    debugPrint("WebSocket couldn’t send message because: \(error)")
+                }
+            }
+        } catch {
+            print("Error encoding message: \(error.localizedDescription)")
+        }
+
         self.receiveMessage()
     }
 
@@ -67,12 +91,12 @@ class CurrencyService: NSObject {
     }
 
     private func onReceiveData(_ data: Data) {
-        guard let currency = try? JSONDecoder().decode(Currency.self, from: data) else {
+        guard let currencyData = try? JSONDecoder().decode(CurrencyResponse.self, from: data) else {
             return
         }
 
         var newDictionary = [String: String]()
-        newDictionary[currency.name.rawValue] = currency.lastPrice
+        newDictionary[currencyData.data.name] = currencyData.data.value
 
         let mergedDictionary = currencyDictionary.merging(newDictionary) { $1 }
         currencyDictionarySubject.send(mergedDictionary)

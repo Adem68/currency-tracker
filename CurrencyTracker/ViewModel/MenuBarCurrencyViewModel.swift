@@ -46,6 +46,7 @@ class MenuBarCurrencyViewModel: ObservableObject {
     }
 
     func updateView() {
+        self.color = .green
         let selectedCurrencyName = selectedCurrencyType.description
         let currencyValue = self.service.currencyDictionary[selectedCurrencyName]?.asDouble ?? 0
         let currencyValueText = self.currencyFormatter.string(from: NSNumber(value: currencyValue))
@@ -61,18 +62,9 @@ class MenuBarCurrencyViewModel: ObservableObject {
             self.value = "İnternet yok"
         }
 
-        listenNetworkChanges()
-    }
 
-    func listenNetworkChanges() {
-        if self.service.isConnected {
-            if self.color == .green {
-                self.color = .white
-            } else {
-                self.color = .green
-            }
-        } else {
-            self.color = .red
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+            self.color = .white
         }
     }
 }

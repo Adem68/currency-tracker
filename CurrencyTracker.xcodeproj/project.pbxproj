@@ -16,6 +16,7 @@
 		2939280527ECFA88005C4F56 /* CurrencyTrackerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2939280427ECFA88005C4F56 /* CurrencyTrackerApp.swift */; };
 		2939280927ECFA89005C4F56 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2939280827ECFA89005C4F56 /* Assets.xcassets */; };
 		2939280C27ECFA89005C4F56 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2939280B27ECFA89005C4F56 /* Preview Assets.xcassets */; };
+		2945A19327EF7E9B00FABEC2 /* CurrencyResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2945A19227EF7E9B00FABEC2 /* CurrencyResponse.swift */; };
 		296A754C27ED11390046F9E6 /* CurrencyType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 296A754B27ED11390046F9E6 /* CurrencyType.swift */; };
 		296A754E27ED12680046F9E6 /* Currency.swift in Sources */ = {isa = PBXBuildFile; fileRef = 296A754D27ED12680046F9E6 /* Currency.swift */; };
 		296A755127ED12970046F9E6 /* CurrencyService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 296A755027ED12970046F9E6 /* CurrencyService.swift */; };
@@ -35,6 +36,7 @@
 		2939280B27ECFA89005C4F56 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		2939280D27ECFA89005C4F56 /* CurrencyTracker.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = CurrencyTracker.entitlements; sourceTree = "<group>"; };
 		2939281327ECFAC9005C4F56 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		2945A19227EF7E9B00FABEC2 /* CurrencyResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyResponse.swift; sourceTree = "<group>"; };
 		296A754B27ED11390046F9E6 /* CurrencyType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyType.swift; sourceTree = "<group>"; };
 		296A754D27ED12680046F9E6 /* Currency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Currency.swift; sourceTree = "<group>"; };
 		296A755027ED12970046F9E6 /* CurrencyService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyService.swift; sourceTree = "<group>"; };
@@ -119,6 +121,7 @@
 			children = (
 				296A754B27ED11390046F9E6 /* CurrencyType.swift */,
 				296A754D27ED12680046F9E6 /* Currency.swift */,
+				2945A19227EF7E9B00FABEC2 /* CurrencyResponse.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -241,6 +244,7 @@
 				296A754E27ED12680046F9E6 /* Currency.swift in Sources */,
 				291B241227EE37DE0094B26D /* Constants.swift in Sources */,
 				296A754C27ED11390046F9E6 /* CurrencyType.swift in Sources */,
+				2945A19327EF7E9B00FABEC2 /* CurrencyResponse.swift in Sources */,
 				296A755627ED1F680046F9E6 /* MenuBarCurrencyViewModel.swift in Sources */,
 				290CAA7727ED030F00F8837B /* MenuBarCurrencyView.swift in Sources */,
 				290CAA7427ECFCDD00F8837B /* AppDelegate.swift in Sources */,
@@ -381,7 +385,7 @@
 				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Manual;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 6;
 				DEVELOPMENT_ASSET_PATHS = "\"CurrencyTracker/Preview Content\"";
 				DEVELOPMENT_TEAM = "";
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -394,7 +398,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MARKETING_VERSION = 1.0.1;
+				MARKETING_VERSION = 1.0.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.ademfurkan.CurrencyTracker;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -412,7 +416,7 @@
 				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Manual;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 6;
 				DEVELOPMENT_ASSET_PATHS = "\"CurrencyTracker/Preview Content\"";
 				DEVELOPMENT_TEAM = "";
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -425,7 +429,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MARKETING_VERSION = 1.0.1;
+				MARKETING_VERSION = 1.0.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.ademfurkan.CurrencyTracker;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
