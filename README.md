@@ -12,10 +12,10 @@ Kurları kolayca takip et
 
 ## Installation
 
-#### TestFlight - Waiting review
+#### [TestFlight](https://testflight.apple.com/join/0OI2m03w)
 
 
-You can run project locally until the app will publish on the testflight.
+You can download app from TestFlight or run project locally.
 
 ## Run Locally
 
