@@ -11,7 +11,6 @@ enum CurrencyType: String, Decodable, Identifiable, CaseIterable {
     case dolar = "USD"
     case euro = "EUR"
     case pound = "GBP"
-    case bitcoin = "bitcoin"
     case quarterGold = "ceyrek-altin"
     case gramGold = "gram-altin"
 

@@ -38,6 +38,5 @@ public struct Constants {
         "USD",
         "EUR",
         "GBP",
-        "bitcoin"
     ]
 }
