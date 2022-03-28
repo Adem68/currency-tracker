@@ -9,13 +9,15 @@ import Foundation
 
 public struct Constants {
     static let menuBarAppWidth: CGFloat = 128
-    static let popoverContentSize: NSSize = .init(width: 300, height: 360)
+    static let popoverContentSize: NSSize = .init(width: 320, height: 360)
     static var applicationVersion: String {
         return Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as! String
     }
     static var appVersion: String {
         return "v\(applicationVersion)"
     }
+
+    static let repoURL: URL = URL(string: "https://github.com/Adem68/currency-tracker")!
 
     static let websocketURLS = [
         "wss://ws1.doviz.com:5224/",

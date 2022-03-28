@@ -14,8 +14,8 @@ class CurrencyService: NSObject {
     private var wsTask: URLSessionWebSocketTask?
     private var pingTryCount = 0
 
-    let currencyDictionarySubject = CurrentValueSubject<[String: String], Never>([:])
-    var currencyDictionary: [String: String] { currencyDictionarySubject.value }
+    let currencyDictionarySubject = CurrentValueSubject<[String: Currency], Never>([:])
+    var currencyDictionary: [String: Currency] { currencyDictionarySubject.value }
 
     let connectionStateSubject = CurrentValueSubject<Bool, Never>(false)
     var isConnected: Bool { connectionStateSubject.value }
@@ -101,11 +101,12 @@ class CurrencyService: NSObject {
             return
         }
 
-        var newDictionary = [String: String]()
-        let currencyName = currencyData.data.name.lowercased()
-        let currencyValue = currencyData.data.value
+        var newDictionary = [String: Currency]()
+        let currency = currencyData.data
         
-        newDictionary[currencyName] = currencyValue
+        newDictionary[currency.name.lowercased()] = Currency(name: currency.name,
+                                                             value: currency.value,
+                                                             changeRatio: currency.changeRatio)
 
         let mergedDictionary = currencyDictionary.merging(newDictionary) { $1 }
         currencyDictionarySubject.send(mergedDictionary)

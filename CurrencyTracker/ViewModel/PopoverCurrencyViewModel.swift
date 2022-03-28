@@ -12,6 +12,8 @@ import SwiftUI
 class PopoverCurrencyViewModel: ObservableObject {
     @Published private(set) var title: String
     @Published private(set) var subtitle: String
+    @Published private(set) var titleTextColor: Color
+
     @Published private(set) var currencyTypes: [CurrencyType]
     @AppStorage("SelectedCurrencyType") var selectedCurrencyType = CurrencyType.dolar
 
@@ -28,11 +30,13 @@ class PopoverCurrencyViewModel: ObservableObject {
 
     init(title: String = "",
          subtitle: String = "",
+         titleTextColor: Color = .white,
          currencyTypes: [CurrencyType] = CurrencyType.allCases,
          service: CurrencyService = .init()
     ) {
         self.title = title
         self.subtitle = subtitle
+        self.titleTextColor = .white
         self.currencyTypes = currencyTypes
         self.service = service
     }
@@ -45,27 +49,47 @@ class PopoverCurrencyViewModel: ObservableObject {
     }
 
 
-    func updateView() {  
-        let selectedCurrencyName = selectedCurrencyType.description
-        let currencyValue = self.service.currencyDictionary[selectedCurrencyName]?.asDouble ?? 0
-        self.currencyFormatter.maximumFractionDigits = 4
-        let currencyValueText = self.currencyFormatter.string(from: NSNumber(value: currencyValue))
-        self.title = selectedCurrencyName
+    func updateView() {
+        if self.service.isConnected {
+            if let selectedCurrency = self.service.currencyDictionary[selectedCurrencyType.description] {
+                self.title = selectedCurrency.name
 
-        if currencyValue > 0 {
-            self.subtitle = currencyValueText ?? ""
+                if selectedCurrency.value > 0 {
+                    self.currencyFormatter.maximumFractionDigits = 4
+                    self.subtitle = self.currencyFormatter.string(from: NSNumber(value: selectedCurrency.value))!
+                    self.titleTextColor = getChangeRatioColor(for: selectedCurrencyType)
+                } else {
+                    self.subtitle = "Güncelleniyor"
+                }
+            }
         } else {
-            self.subtitle = "Güncelleniyor"
+            self.subtitle = "İnternet yok..."
         }
+    }
+
+    func getChangeRatio(for currencyType: CurrencyType) -> String {
+        if let changeRatio = self.service.currencyDictionary[currencyType.description]?.changeRatio {
+            return "%\(changeRatio.description)"
+        } else { return "" }
+    }
+
+    func getChangeRatioColor(for currencyType: CurrencyType) -> Color {
+        if let changeRatio = self.service.currencyDictionary[currencyType.description]?.changeRatio {
+            if changeRatio == 0 { return .white }
+            return changeRatio > 0 ? .green : .red
+        } else { return .white }
     }
 
     func valueText(for currencyType: CurrencyType) -> String {
-        if let value = self.service.currencyDictionary[currencyType.description]?.asDouble, value > 0 {
-            self.currencyFormatter.maximumFractionDigits = 2
-            return self.currencyFormatter.string(from: NSNumber(value: value)) ?? ""
+        if let currency = self.service.currencyDictionary[currencyType.description] {
+            if currency.value > 0 {
+                self.currencyFormatter.maximumFractionDigits = 2
+                return self.currencyFormatter.string(from: NSNumber(value: currency.value)) ?? ""
+            } else {
+                return "Güncelleniyor"
+            }
         } else {
-            return "Güncelleniyor"
+            return "Veri yok"
         }
     }
-
 }
