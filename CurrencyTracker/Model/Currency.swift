@@ -8,6 +8,7 @@
 import Foundation
 
 struct Currency: Decodable {
-    let name: CurrencyType
-    let lastPrice: String
+    let name: String
+    let value: Double
+    let changeRatio: Double
 }

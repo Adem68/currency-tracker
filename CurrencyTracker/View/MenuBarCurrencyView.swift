@@ -12,12 +12,14 @@ struct MenuBarCurrencyView: View {
 
     var body: some View {
         HStack(spacing: 4) {
-            Image(systemName: "circle.fill")
-                .foregroundColor(viewModel.color)
+            Image(systemName: viewModel.prefixIcon)
+                .foregroundColor(viewModel.prefixIconColor)
 
             VStack(alignment: .center, spacing: -2) {
                 Text(viewModel.name)
                 Text(viewModel.value)
+                    .foregroundColor(viewModel.valueTextColor)
+                    .bold()
             }
             .font(.caption)
         }
@@ -33,7 +35,7 @@ struct MenuBarCurrencyView: View {
 struct MenuBarCoinView_Previews: PreviewProvider {
     static var previews: some View {
         MenuBarCurrencyView(
-            viewModel: .init(name: "Dolar", value: "50000", color: .green)
+            viewModel: .init(name: "Dolar", value: "50000", prefixIconColor: .green)
         )
     }
 }

@@ -16,8 +16,11 @@ struct PopoverCurrencyView: View {
     var body: some View {
         VStack(spacing: 16) {
             VStack {
-                Text(viewModel.title).font(.largeTitle)
-                Text(viewModel.subtitle).font(.title.bold())
+                Text(viewModel.title)
+                    .font(.largeTitle)
+                Text(viewModel.subtitle)
+                    .foregroundColor(viewModel.titleTextColor)
+                    .font(.title.bold())
             }
 
             Divider()
@@ -25,10 +28,21 @@ struct PopoverCurrencyView: View {
             Picker("Bir kur seç!", selection: $viewModel.selectedCurrencyType) {
                 ForEach(viewModel.currencyTypes) { type in
                     HStack {
-                        Text(type.description).font(.headline)
+                        Text(type.description)
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                            .font(.headline)
                         Spacer()
+                        HStack {
+                            Text(viewModel.getChangeRatio(for: type))
+                                .foregroundColor(viewModel.getChangeRatioColor(for: type))
+                                .bold()
+                                .frame(maxWidth: .infinity, alignment: .center)
+                        }
+                        Spacer()
+
                         Text(viewModel.valueText(for: type))
-                            .frame(alignment: .trailing)
+                            .bold()
+                            .frame(maxWidth: .infinity, alignment: .trailing)
                             .font(.body)
                     }
                     .tag(type)
@@ -48,8 +62,7 @@ struct PopoverCurrencyView: View {
             Divider()
 
             HStack(spacing: 12) {
-                Link(destination: URL(string: "https://github.com/Adem68/currency-tracker")!) {
-                    Image(systemName: "link")
+                Link(destination: Constants.repoURL) {
                     Text("GitHub")
                 }
 

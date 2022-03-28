@@ -16,13 +16,15 @@ struct CurrencyResponse: Decodable {
     }
 }
 
-// MARK: - M
+// MARK: - CurrencyData
 struct CurrencyData: Decodable {
     let name: String
-    let value: String
+    let value: Double
+    let changeRatio: Double
 
     enum CodingKeys: String, CodingKey {
         case name = "k"
-        case value = "s"
+        case value = "sn"
+        case changeRatio = "cn"
     }
 }

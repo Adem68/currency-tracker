@@ -10,9 +10,12 @@ import Foundation
 import SwiftUI
 
 class MenuBarCurrencyViewModel: ObservableObject {
+    @Published private(set) var prefixIcon: String
     @Published private(set) var name: String
     @Published private(set) var value: String
-    @Published private(set) var color: Color
+    @Published private(set) var prefixIconColor: Color
+    @Published private(set) var valueTextColor: Color
+
     @AppStorage("SelectedCurrencyType") private(set) var selectedCurrencyType = CurrencyType.dolar
 
     private let service: CurrencyService
@@ -26,14 +29,19 @@ class MenuBarCurrencyViewModel: ObservableObject {
         return formatter
     }()
 
-    init(name: String = "",
-         value: String = "",
-         color: Color = .white,
-         service: CurrencyService = .init()
+    init(
+        name: String = "",
+        value: String = "",
+        valueTextColor: Color = .white,
+        prefixIcon: String = "exclamationmark.triangle",
+        prefixIconColor: Color = .white,
+        service: CurrencyService = .init()
     ) {
         self.name = name
         self.value = value
-        self.color = color
+        self.valueTextColor = valueTextColor
+        self.prefixIcon = prefixIcon
+        self.prefixIconColor = prefixIconColor
         self.service = service
     }
 
@@ -46,24 +54,28 @@ class MenuBarCurrencyViewModel: ObservableObject {
     }
 
     func updateView() {
-        self.color = .green
-        let selectedCurrencyName = selectedCurrencyType.description
-        let currencyValue = self.service.currencyDictionary[selectedCurrencyName]?.asDouble ?? 0
-        let currencyValueText = self.currencyFormatter.string(from: NSNumber(value: currencyValue))
-        self.name = selectedCurrencyName
-
         if self.service.isConnected {
-            if currencyValue > 0 {
-                self.value = currencyValueText ?? ""
-            } else {
-                self.value = "Güncelleniyor..."
+            if let selectedCurrency = self.service.currencyDictionary[selectedCurrencyType.description] {
+                self.name = selectedCurrency.name
+
+                if selectedCurrency.value > 0 {
+                    self.value = self.currencyFormatter.string(from: NSNumber(value: selectedCurrency.value))!
+
+                    let isIncreased: Bool = selectedCurrency.changeRatio > 0
+                    self.prefixIcon = isIncreased ? "triangle.fill" : "arrowtriangle.down.fill"
+                    
+                    let color: Color = isIncreased ? .green : .red
+                    self.prefixIconColor = color
+                    self.valueTextColor = color
+                } else {
+                    self.value = "Güncelleniyor..."
+                    self.prefixIcon = "goforward"
+                }
+
             }
         } else {
-            self.value = "İnternet yok"
-        }
-
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
-            self.color = .white
+            self.value = "İnternet yok..."
+            self.prefixIcon = "exclamationmark.triangle"
         }
     }
 }
