@@ -58,10 +58,10 @@ class MenuBarCurrencyViewModel: ObservableObject {
             if let selectedCurrency = self.service.currencyDictionary[selectedCurrencyType.description] {
                 self.name = selectedCurrency.name
 
-                if selectedCurrency.value > 0 {
+                if selectedCurrency.value > .zero {
                     self.value = self.currencyFormatter.string(from: NSNumber(value: selectedCurrency.value))!
 
-                    let isIncreased: Bool = selectedCurrency.changeRatio > 0
+                    let isIncreased: Bool = selectedCurrency.changeRatio > .zero
                     self.prefixIcon = isIncreased ? "triangle.fill" : "arrowtriangle.down.fill"
                     
                     let color: Color = isIncreased ? .green : .red
@@ -76,6 +76,8 @@ class MenuBarCurrencyViewModel: ObservableObject {
         } else {
             self.value = "İnternet yok..."
             self.prefixIcon = "exclamationmark.triangle"
+            self.prefixIconColor = .red
+            self.valueTextColor = .red
         }
     }
 }
