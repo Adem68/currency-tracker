@@ -8,7 +8,7 @@ Kurları kolayca takip et
 
 | Dolar | Euro |
 | ----------- | ----------- |
-| ![screenshot](https://user-images.githubusercontent.com/21019611/160187980-95860675-f254-4fac-9e74-1729e02f1eb0.png) | ![screenshot](https://user-images.githubusercontent.com/21019611/160188032-58456519-c492-4023-8424-5554d910177b.png) |
+| ![screenshot](https://user-images.githubusercontent.com/21019611/175823604-07a38869-fe5d-4f46-b02a-1eb784567552.png) | ![screenshot](https://user-images.githubusercontent.com/21019611/175823594-89be8548-1ada-492b-8bd4-7578bf0fbc67.png) |
 
 ## Installation
 
